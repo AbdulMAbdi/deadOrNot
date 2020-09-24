@@ -1,0 +1,26 @@
+<script src="https://gist.github.com/chrispinkney/069b09d2da5b9f7b73347d13ba3c32e7.js"></script>
+Planet Feed URLs
+index2.html
+<a href="https://wiki.cdot.senecacollege.ca/w/api.php?action=rsd">https://wiki.cdot.senecacollege.ca/w/api.php?action=rsd
+<a href="http://zenit.senecac.on.ca/~chris.tyler/planet/">http://zenit.senecac.on.ca/~chris.tyler/planet/
+<a href="http://www.wordpress.com">http://www.wordpress.com
+<a href="http://s9y.org">http://s9y.org
+<a href="http://en.wikipedia.org/wiki/RSS_(file_format)">http://en.wikipedia.org/wiki/RSS_(file_format)
+<a href="http://en.wikipedia.org/wiki/RSS_(file_format)">http://en.wikipedia.org/wiki/RSS_(file_format)
+<a href="http://en.wikipedia.org/wiki/Hackergotchi">http://en.wikipedia.org/wiki/Hackergotchi
+<a href="http://s-aleinikov.blog.ca/feed/atom/posts/">http://s-aleinikov.blog.ca/feed/atom/posts/
+<a href="http://ejtorre.blog.ca/feed/rss2/posts/">http://ejtorre.blog.ca/feed/rss2/posts/
+<a href="http://rickeyre.ca/open-source-feed.xml">http://rickeyre.ca/open-source-feed.xml
+<a href="http://tea.cesaroliveira.net/archives/tag/seneca/feed">http://tea.cesaroliveira.net/archives/tag/seneca/feed
+<a href="http://blog.marcussaad.com/?feed=rss2&amp;lang=en">http://blog.marcussaad.com/?feed=rss2&amp;lang=en
+<a href="http://matthewtorrance.com/category/osd/feed/">http://matthewtorrance.com/category/osd/feed/
+<a href="http://hesam-chobanlou.com/feed/atom.php">http://hesam-chobanlou.com/feed/atom.php
+<a href="http://zadkielm.blogspot.com/feeds/posts/default/-/open%20source">http://zadkielm.blogspot.com/feeds/posts/default/-/open%20source
+<a href="http://travisrawn.blogspot.com/feeds/posts/default">http://travisrawn.blogspot.com/feeds/posts/default
+<a href="http://dev-blog.zerogin.com/category/opensource/feed/">http://dev-blog.zerogin.com/category/opensource/feed/
+<a href="http://peter.sykokillers.com/category/open-source/feed/">http://peter.sykokillers.com/category/open-source/feed/
+<a href="http://http://stephenruthland.wordpress.com/feed/">http://http://stephenruthland.wordpress.com/feed/
+<a href="http://main.justinflowers.ca/web/wordpress/?cat=2&amp;feed=rss2">http://main.justinflowers.ca/web/wordpress/?cat=2&amp;feed=rss2
+<a href="http://http://hhashimi3.wordpress.com/feed/">http://http://hhashimi3.wordpress.com/feed/
+<a href="https://dps909.defilippis.ca/index.php/feed/">https://dps909.defilippis.ca/index.php/feed/
+<a href="https://jadach1201231188.wordpress.com/feed/">https://jadach1201231188.wordpress.com/feed/
