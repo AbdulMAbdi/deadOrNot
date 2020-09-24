@@ -17,7 +17,7 @@ To install DeadOrNot to locally follow the steps below
 ```bash
 git clone https://github.com/AbdulMAbdi/deadOrNot.git
 ```
-2. Use[pip](https://pip.pypa.io/en/stable/) to install the requirements.
+2. Use [pip](https://pip.pypa.io/en/stable/) to install the requirements.
 ```bash
 pip install -r requirements.txt
 ```
