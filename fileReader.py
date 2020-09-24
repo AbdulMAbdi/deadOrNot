@@ -16,21 +16,22 @@ class Link:
     def checkStatus(self,option): 
         try: 
             self.linkStatus = http.request('HEAD', self.linkUrl).status
-        except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError or urllib3.exceptions.TimeoutError as e: 
-            self.linkValid = "Unknown"
-        
+        except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError as e: 
+            self.linkValid = "unknown"
+            self.linkStatus = "failed to establish a connection"
+
         if self.linkStatus == 200: 
-            self.linkValid = "Good"
+            self.linkValid = "good"
             if option == 0 or option == 1:
-                print(colored(self.linkUrl + " is a " + self.linkValid + " link", 'green'))
+                print(colored(self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus), 'green'))
         elif self.linkStatus == 400 or self.linkStatus == 404: 
-            self.linkValid = "Bad"
+            self.linkValid = "bad"
             if option == 0 or option == 2:
-                print(colored(self.linkUrl + " is a " + self.linkValid + " link", 'red'))
+                print(colored(self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus) , 'red'))
         else: 
-            self.linkValid = "Unknown"
+            self.linkValid = "unknown"
             if option == 0 or option == 2:
-                print(colored(self.linkUrl + " is an " + self.linkValid + " link", 'yellow'))
+                print(colored(self.linkUrl + " is an " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus), 'yellow'))
 
 #Class to manage and store file information
 class TextFile: 

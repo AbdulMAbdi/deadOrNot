@@ -33,11 +33,11 @@ def processFile(file,option):
         liveLinks = 0 
         unknownLinks = 0
         for url in argFile.fileLinks: 
-            if url.linkValid == "Good": 
+            if url.linkValid == "good": 
                 liveLinks += 1
-            if url.linkValid == "Unknown":
+            if url.linkValid == "unknown":
                 unknownLinks += 1
-            if url.linkValid == "Bad":
+            if url.linkValid == "bad":
                 deadLinks += 1 
         print("The file " + file + " has " + colored(str(deadLinks) + " dead links ", 'red') + " and " + colored(str(liveLinks) + " live links", "green"))
         print("There are also " + colored(str(unknownLinks) + " unknown links", "yellow"))
