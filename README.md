@@ -12,7 +12,7 @@ The following are needed to run DeadOrNot
 * [Git] (https://git-scm.com/)
 
 ### Installation
-To install DeadOrNot to locally follow the steps below
+To install DeadOrNot locally follow the steps below
 1. Clone the repo from github
 ```bash
 git clone https://github.com/AbdulMAbdi/deadOrNot.git
