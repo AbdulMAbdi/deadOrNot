@@ -1,10 +1,8 @@
 import re
 import urllib3
 import threading
-from termcolor import colored
-import colorama
+from colorama import Fore, init
 
-colorama.init()
 http = urllib3.PoolManager()
 
 #Class to manage and store url information
@@ -13,7 +11,8 @@ class Link:
         self.linkUrl = url
         self.linkStatus = None
         self.linkValid = None
-    def checkStatus(self,option): 
+    def checkStatus(self,option):
+        init()
         try: 
             self.linkStatus = http.request('HEAD', self.linkUrl).status
         except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError as e: 
@@ -23,15 +22,15 @@ class Link:
         if self.linkStatus == 200: 
             self.linkValid = "good"
             if option == 0 or option == 1:
-                print(colored(self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus), 'green'))
+                print(Fore.GREEN + self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus))
         elif self.linkStatus == 400 or self.linkStatus == 404: 
             self.linkValid = "bad"
             if option == 0 or option == 2:
-                print(colored(self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus) , 'red'))
+                print(Fore.RED + self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus))
         else: 
             self.linkValid = "unknown"
             if option == 0 or option == 2:
-                print(colored(self.linkUrl + " is an " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus), 'yellow'))
+                print(Fore.YELLOW + self.linkUrl + " is an " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus))
 
 #Class to manage and store file information
 class TextFile: 
