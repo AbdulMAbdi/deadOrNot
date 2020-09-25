@@ -5,7 +5,6 @@ import sys
 from termcolor import colored
 import colorama
 
-colorama.init()
 
 parser = argparse.ArgumentParser(description="Determine status of link in file", epilog="""The CLI takes a file path (relative or absolute)
                                                                                             and reads and parses it for urls to check their http status""")
@@ -24,6 +23,7 @@ parser.add_argument('-i', '--info', action='store_true',
 
 
 def processFile(file,option):
+    colorama.init()
     argFile = fileReader.TextFile(file)
     if argFile.fileText is not None: 
         argFile.checkLinkStatuses(option)
