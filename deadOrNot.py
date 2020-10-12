@@ -15,8 +15,11 @@ parser.add_argument("files", nargs="+")
 parser.add_argument('-g', '--good', action='store_true', 
     help="Outputs only live links")
 #create command line option to output dead and unknown status links only
-parser.add_argument('-d', '--dead', action='store_true', 
+parser.add_argument('-b', '--bad', action='store_true', 
     help="Outputs only dead links")
+#create command line option to output all links
+parser.add_argument('-a', '--all', action='store_true', 
+    help="Outputs all links")
 #create command line option for general information
 parser.add_argument('-i', '--info', action='store_true', 
     help="Outputs overall information about links in file, i.e how many live or dead links there are")
@@ -54,10 +57,10 @@ if len(sys.argv)==1:
     sys.exit(1)
 
 #parse arguments
-args = parser.parse_args()
+args,unknown = parser.parse_args()
 if args.good:
     processArguments(args.files,1)
-elif args.dead:
+elif args.bad:
     processArguments(args.files,2)
 elif args.info:
     processArguments(args.files,3)
