@@ -11,26 +11,34 @@ class Link:
         self.linkUrl = url
         self.linkStatus = None
         self.linkValid = None
+        self.linkInfo = ""
     def checkStatus(self,option):
         init()
         try: 
             self.linkStatus = http.request('HEAD', self.linkUrl).status
+            if self.linkStatus == 200: 
+                self.linkValid = 'good'
+            elif self.linkStatus == 400 or self.linkStatus == 404: 
+                self.linkValid = 'bad'
+            else: 
+                self.linkValid = "unknown"
         except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError as e: 
             self.linkValid = "unknown"
             self.linkStatus = "failed to establish a connection"
-
-        if self.linkStatus == 200: 
-            self.linkValid = "good"
-            if option == 0 or option == 1:
-                print(Fore.GREEN + self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus))
-        elif self.linkStatus == 400 or self.linkStatus == 404: 
-            self.linkValid = "bad"
-            if option == 0 or option == 2:
-                print(Fore.RED + self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus))
+        if option == 4: 
+            self.linkInfo = '{ \"url\": \'' + self.linkUrl + '\', \"status\":' + str(self.linkStatus) +' }'
         else: 
-            self.linkValid = "unknown"
-            if option == 0 or option == 2:
-                print(Fore.YELLOW + self.linkUrl + " is an " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus))
+            self.linkInfo =  self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus)
+            
+        if self.linkStatus == 200: 
+            if option != 2:
+                print(Fore.GREEN + self.linkInfo)
+        elif self.linkStatus == 400 or self.linkStatus == 404: 
+            if option != 1:
+                print(Fore.RED + self.linkInfo)
+        else: 
+            if option != 1:
+                print(Fore.YELLOW + self.linkInfo)
 
 #Class to manage and store file information
 class TextFile: 

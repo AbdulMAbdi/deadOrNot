@@ -17,6 +17,9 @@ parser.add_argument('-g', '--good', action='store_true',
 #create command line option to output dead and unknown status links only
 parser.add_argument('-d', '--dead', action='store_true', 
     help="Outputs only dead links")
+#create command line option to output link information in JSON format 
+parser.add_argument('-j', '--json', action='store_true', 
+    help="Outputs only dead links")
 #create command line option for general information
 parser.add_argument('-i', '--info', action='store_true', 
     help="Outputs overall information about links in file, i.e how many live or dead links there are")
@@ -61,6 +64,8 @@ elif args.dead:
     processArguments(args.files,2)
 elif args.info:
     processArguments(args.files,3)
+elif args.json:
+    processArguments(args.files,4)
 else: 
     processArguments(args.files,0)
 
