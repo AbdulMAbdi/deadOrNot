@@ -64,6 +64,8 @@ elif args.bad:
     processArguments(args.files,2)
 elif args.info:
     processArguments(args.files,3)
+elif args.json:
+    processArguments(args.files,4)
 else: 
     processArguments(args.files,0)
 
