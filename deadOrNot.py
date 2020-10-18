@@ -6,8 +6,9 @@ from termcolor import colored
 import colorama
 
 
-parser = argparse.ArgumentParser(description="Determine status of link in file", epilog="""The CLI takes a file path (relative or absolute)
-                                                                                            and reads and parses it for urls to check their http status""")
+parser = argparse.ArgumentParser(description="Determine status of link in file",
+                                 epilog="""The CLI takes a file path (relative or absolute)
+                                        and reads and parses it for urls to check their http status""")
 
 #take file names as an argument on command line
 parser.add_argument("files", nargs="+")
@@ -21,8 +22,11 @@ parser.add_argument('-b', '--bad', action='store_true',
 parser.add_argument('-a', '--all', action='store_true', 
     help="Outputs all links")
 #create command line option for general information
-parser.add_argument('-i', '--info', action='store_true', 
+parser.add_argument('-in', '--info', action='store_true',
     help="Outputs overall information about links in file, i.e how many live or dead links there are")
+#create command line option to ignore specified link patterns
+parser.add_argument('-i', '--ignore', nargs=1,
+    help="Outputs the links the do not match the provided pattern")
 
 
 def processFile(file,option):
