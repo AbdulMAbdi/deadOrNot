@@ -57,7 +57,7 @@ if len(sys.argv)==1:
     sys.exit(1)
 
 #parse arguments
-args,unknown = parser.parse_args()
+args = parser.parse_args()
 if args.good:
     processArguments(args.files,1)
 elif args.bad:
