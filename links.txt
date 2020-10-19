@@ -802,3 +802,6 @@ API
 Training
 Blog
 About
+<a href="https://www.google.com/search?q=bad+links+examples&oq=&aqs=chrome.2.35i39i362l8...8.148487601j0j15&sourceid=chrome&ie=UTF-8">Bad Links
+<a href="https://www.google.ca/?gws_rd=ssl">Google.ca
+
