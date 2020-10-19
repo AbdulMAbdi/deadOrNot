@@ -44,11 +44,16 @@ Use the -d/-dead option to check and output dead or unknown URL statuses
 python deadOrNot.py  *fileName* -d
 ```
 ![DeadOrNot](https://i.imgur.com/WcqMzVM.png)
-Use the -i option to check URL statuses and output overall status information for all links in file
+Use the -in option to check URL statuses and output overall status information for all links in file
 ```bash
-python deadOrNot.py *fileName* -i
+python deadOrNot.py *fileName* -in
 ```
 ![DeadOrNot](https://i.imgur.com/u3Ve1RD.png)
+Use the -i option to compare links with a single link provided in a separate text file
+If the links partially match, the corresponding link will be excluded from being checked
+```bash
+python deadOrNot.py 
+```
 ## Contributing
 Any help, ideas or issues with the program are welcome and encouraged. 
 
