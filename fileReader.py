@@ -1,9 +1,12 @@
 import re
+import sys
+
 import urllib3
 import threading
 from colorama import Fore, init
 
 http = urllib3.PoolManager()
+
 
 #Class to manage and store url information
 class Link: 
@@ -40,6 +43,7 @@ class Link:
             if option != 1:
                 print(Fore.YELLOW + self.linkInfo)
 
+
 #Class to manage and store file information
 class TextFile: 
     def __init__(self,filePath):
@@ -62,8 +66,33 @@ class TextFile:
             thread.start()
         for thread in self.fileThreads: 
             thread.join()
-        
-            
+
+    def compareLinks(self,link,pattern):
+        # try to read and store file information, catch fileNotFound and IO errors
+        self.match = re.search(pattern,link)
+
+
+# Class to manage and store ignore file information
+class IgnoreFile:
+    def __init__(self,ignoreFilePath):
+        # try to read and store file information, catch fileNotFound and IO errors
+        try:
+            path = ignoreFilePath[0]
+            self.fileText = open(path, 'r').read()
+            self.fileComments = set(re.findall('#.*', self.fileText))
+            self.fileUrl = set(re.findall('(?!# )(http|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', self.fileText))
+            self.fileInvalidUrl = set(re.findall('(?!# )(?!http|https)(?!://)([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', self.fileText))
+            if self.fileUrl:
+                self.fileLink = [Link((url[0]+"://" + url[1] + url[2])) for url in self.fileUrl]
+            elif self.fileInvalidUrl:
+                print("The URL provided is invalid. Must begin with https:// or http://")
+                sys.exit(-1)
+        except IOError as e:
+            print("File was unable to be read")
+            self.fileText = None
+        except FileNotFoundError as e:
+            self.fileText = None
+            print("File was not found")
     
 
 
