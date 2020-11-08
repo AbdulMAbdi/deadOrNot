@@ -34,29 +34,30 @@ parser.add_argument('-i', '--ignore', nargs=1,
 
 def processFile(file,option):
     colorama.init()
-    argFile = fileReader.TextFile(file)
-    processLinks(file,argFile,option)
+    urlFile = fileReader.TextFile(file)
+    processLinks(file,urlFile,option)
 
 
 def processFileWithIgnore(file,pattern,option):
     colorama.init()
-    argFile = fileReader.TextFile(file)
-    for link in argFile.fileLinks:
-        argFile.compareLinks(link.linkUrl,pattern)
-        if argFile.match:
-            argFile.fileLinks.remove(link)
-    processLinks(file,argFile,option)
+    urlFile = fileReader.TextFile(file)
+    for link in urlFile.fileLinks:
+        urlFile.compareLinks(link.linkUrl,pattern)
+        if urlFile.match:
+            urlFile.fileLinks.remove(link)
+    processLinks(file,urlFile,option)
 
 
-def processLinks(file,argFile,option):
-    if argFile.fileText is not None:
-        argFile.checkLinkStatuses(option)
+
+def processLinks(file,urlFile,option):
+    if urlFile.fileText is not None:
+        urlFile.checkLinkStatuses(option)
     #info option, get counts for link status types
-    if option == 3:
+    if option == "info":
         deadLinks = 0
         liveLinks = 0
         unknownLinks = 0
-        for url in argFile.fileLinks:
+        for url in urlFile.fileLinks:
             if url.linkValid == "good":
                 liveLinks += 1
             if url.linkValid == "unknown":
@@ -85,31 +86,36 @@ if len(sys.argv)==1:
     sys.exit(1)
 
 
-def ignoreOptionFilter(args):
-    if args.good:
-        processArgumentsWithIgnore(args.files, ignoreLink.fileLink[0].linkUrl, 1)
-    elif args.bad:
-        processArgumentsWithIgnore(args.files, ignoreLink.fileLink[0].linkUrl, 2)
-    elif args.info:
-        processArgumentsWithIgnore(args.files, ignoreLink.fileLink[0].linkUrl, 3)
-    elif args.json:
-        processArgumentsWithIgnore(args.files, ignoreLink.fileLink[0].linkUrl, 4)
-    else:
-        processArgumentsWithIgnore(args.files, ignoreLink.fileLink[0].linkUrl, 0)
+def filterArguments(args):
+    if args.ignore:
+        ignoreFile = fileReader.IgnoreFile(args.ignore) 
+        if args.good:
+            processArgumentsWithIgnore(args.files, ignoreFile.fileLink, "good")
+        elif args.bad:
+            processArgumentsWithIgnore(args.files, ignoreFile.fileLink, "bad")
+        elif args.info:
+            processArgumentsWithIgnore(args.files, ignoreFile.fileLink, "info")
+        elif args.json:
+            processArgumentsWithIgnore(args.files, ignoreFile.fileLink, "json")
+        else:
+            processArgumentsWithIgnore(args.files, ignoreFile.fileLink, "all")
+    else: 
+        if args.good:
+            processArguments(args.files,"good")
+        elif args.bad:
+            processArguments(args.files,"bad")
+        elif args.info:
+            processArguments(args.files,"info")
+        elif args.json:
+            processArguments(args.files,"json")
+        else: 
+            processArguments(args.files,"all")
+
 
 
 #parse arguments
 args = parser.parse_args()
-if args.good:
-    processArguments(args.files,1)
-elif args.bad:
-    processArguments(args.files,2)
-elif args.info:
-    processArguments(args.files,3)
-elif args.json:
-    processArguments(args.files,4)
-else: 
-    processArguments(args.files,0)
+filterArguments(args)
 
 
 

@@ -28,19 +28,19 @@ class Link:
         except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError as e: 
             self.linkValid = "unknown"
             self.linkStatus = "failed to establish a connection"
-        if option == 4: 
+        if option == "json": 
             self.linkInfo = '{ \"url\": \'' + self.linkUrl + '\', \"status\":' + str(self.linkStatus) +' }'
         else: 
             self.linkInfo =  self.linkUrl + " is a " + self.linkValid + " link with a HTTP status of " + str(self.linkStatus)
             
         if self.linkStatus == 200: 
-            if option != 2:
+            if option != "bad":
                 print(Fore.GREEN + self.linkInfo)
         elif self.linkStatus == 400 or self.linkStatus == 404: 
-            if option != 1:
+            if option != "good":
                 print(Fore.RED + self.linkInfo)
         else: 
-            if option != 1:
+            if option != "good":
                 print(Fore.YELLOW + self.linkInfo)
 
 
@@ -69,7 +69,11 @@ class TextFile:
 
     def compareLinks(self,link,pattern):
         # try to read and store file information, catch fileNotFound and IO errors
-        self.match = re.search(pattern,link)
+        self.match = False
+        for url in pattern:
+            if re.search(url.linkUrl,link):
+                self.match = re.search(url.linkUrl,link)
+                break
 
 
 # Class to manage and store ignore file information
@@ -82,6 +86,7 @@ class IgnoreFile:
             self.fileComments = set(re.findall('#.*', self.fileText))
             self.fileUrl = set(re.findall('(?!# )(http|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', self.fileText))
             self.fileInvalidUrl = set(re.findall('(?!# )(?!http|https)(?!://)([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', self.fileText))
+            self.fileLink = []
             if self.fileUrl:
                 self.fileLink = [Link((url[0]+"://" + url[1] + url[2])) for url in self.fileUrl]
             elif self.fileInvalidUrl:
