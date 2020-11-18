@@ -4,24 +4,6 @@ DeadOrNot is a Python program that parses a file for URLs and returns informatio
 
 ![DeadOrNot](https://i.imgur.com/zw850Cd.png)
 
-## Getting Started
-
-### Prerequisites
-The following are needed to run DeadOrNot
-* [Python/Python 3] (https://www.python.org/)
-* [Git] (https://git-scm.com/)
-
-### Installation
-To install DeadOrNot locally follow the steps below
-1. Clone the repo from github
-```bash
-git clone https://github.com/AbdulMAbdi/deadOrNot.git
-```
-2. Use [pip](https://pip.pypa.io/en/stable/) to install the requirements.
-```bash
-pip install -r requirements.txt
-```
-
 ## Usage
 
 Use the -h option to see information and other options
@@ -54,8 +36,6 @@ If the links partially match, the corresponding link will be excluded from being
 ```bash
 python deadOrNot.py 
 ```
-## Contributing
-Any help, ideas or issues with the program are welcome and encouraged. 
 
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. See LICENSE for more information.
