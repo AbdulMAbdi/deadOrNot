@@ -26,7 +26,7 @@ class Link:
                 self.linkValid = "bad"
             else:
                 self.linkValid = "unknown"
-        except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError as e:
+        except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError:
             self.linkValid = "unknown"
             self.linkStatus = "failed to establish a connection"
         if option == "json":
@@ -72,10 +72,10 @@ class TextFile:
             self.fileLinks = [
                 Link((url[0] + "://" + url[1] + url[2])) for url in self.fileUrls
             ]
-        except IOError as e:
+        except IOError:
             print("File was unable to be read")
             self.fileText = None
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             self.fileText = None
             print("File was not found")
 
@@ -128,9 +128,9 @@ class IgnoreFile:
                     "The URL provided is invalid. Must begin with https:// or http://"
                 )
                 sys.exit(-1)
-        except IOError as e:
+        except IOError:
             print("File was unable to be read")
             self.fileText = None
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             self.fileText = None
             print("File was not found")
