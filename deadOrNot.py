@@ -96,10 +96,11 @@ def processArgumentsWithIgnore(argsWithIgnore, pattern, option):
         threading.Thread(target=processFileWithIgnore(arg, pattern, option)).start()
 
 
-# run argparse -help option if no arguments entered on command line
-if len(sys.argv) == 1:
-    parser.print_help()
-    sys.exit(1)
+if __name__ == "__main__":
+    # run argparse -help option if no arguments entered on command line
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(1)
 
 
 def filterArguments(args):

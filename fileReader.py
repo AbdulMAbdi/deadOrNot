@@ -1,11 +1,11 @@
 import re
 import sys
 
-import urllib3
+import requests
 import threading
 from colorama import Fore, init
 
-http = urllib3.PoolManager()
+init()
 
 
 # Class to manage and store url information
@@ -17,16 +17,16 @@ class Link:
         self.linkInfo = ""
 
     def checkStatus(self, option):
-        init()
+
         try:
-            self.linkStatus = http.request("HEAD", self.linkUrl).status
+            self.linkStatus = requests.head(self.linkUrl).status_code
             if self.linkStatus == 200:
                 self.linkValid = "good"
             elif self.linkStatus == 400 or self.linkStatus == 404:
                 self.linkValid = "bad"
             else:
                 self.linkValid = "unknown"
-        except urllib3.exceptions.HTTPError or urllib3.exceptions.ConnectionError:
+        except requests.exceptions.RequestException:
             self.linkValid = "unknown"
             self.linkStatus = "failed to establish a connection"
         if option == "json":
@@ -72,12 +72,12 @@ class TextFile:
             self.fileLinks = [
                 Link((url[0] + "://" + url[1] + url[2])) for url in self.fileUrls
             ]
-        except IOError:
-            print("File was unable to be read")
-            self.fileText = None
         except FileNotFoundError:
             self.fileText = None
             print("File was not found")
+        except IOError:
+            print("File was unable to be read")
+            self.fileText = None
 
     def checkLinkStatuses(self, option):
         # use multithreading for http requests
