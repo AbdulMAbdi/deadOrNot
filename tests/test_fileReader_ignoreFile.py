@@ -16,7 +16,10 @@ def test_ignoreFileInvalid(capsys):
 def test_ignoreFileValid():
     filePath = ["tests/testInvalidCommentUrl.txt"]
     testIgnore = fileReader.IgnoreFile(filePath)
-    assert testIgnore.fileLink[0].linkUrl == "https://www.google.com/"
+    assert (
+        testIgnore.fileLink[0].linkUrl == "https://www.google.com"
+        or "https://www.google.com/"
+    )
 
 
 def test_ignoreFileComment():
