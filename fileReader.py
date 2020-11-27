@@ -128,9 +128,9 @@ class IgnoreFile:
                     "The URL provided is invalid. Must begin with https:// or http://"
                 )
                 sys.exit(-1)
-        except IOError:
-            print("File was unable to be read")
-            self.fileText = None
         except FileNotFoundError:
             self.fileText = None
             print("File was not found")
+        except IOError:
+            print("File was unable to be read")
+            self.fileText = None
