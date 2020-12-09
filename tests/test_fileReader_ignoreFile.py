@@ -1,5 +1,5 @@
 import pytest
-from .. import fileReader
+import src.fileReader as fileReader
 
 
 def test_ignoreFileInvalid(capsys):
