@@ -1,5 +1,5 @@
 import argparse
-import fileReader
+import src.fileReader as fileReader
 import threading
 import sys
 from termcolor import colored
