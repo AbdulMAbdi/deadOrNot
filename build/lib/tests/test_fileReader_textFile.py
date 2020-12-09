@@ -1,4 +1,4 @@
-from .. import fileReader
+import src.fileReader as fileReader
 
 
 # Test if fileNotFound error is raised and chosen output is printed

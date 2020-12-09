@@ -1,6 +1,6 @@
 import pytest
 import requests
-from .. import fileReader
+import src.fileReader as fileReader
 
 
 def test_link_status404(requests_mock):

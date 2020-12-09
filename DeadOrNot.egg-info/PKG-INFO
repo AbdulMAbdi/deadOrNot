@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: DeadOrNot
-Version: 1.0.1
+Version: 1.0.2
 Summary: A command-line tool for reporting on the status of links in a file
 Home-page: https://github.com/AbdulMAbdi/deadOrNot
 Author: Abdul Abdi
